@@ -32,9 +32,26 @@
 
 
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
+
+                    <form id="form" action="{{ route('comics.destroy', $comic) }}">
+                        @csrf
+                        @method('DELETE')
+                        <input onclick="confirmDelete()" class="form-control mt-4 btn btn-danger" type="submit"
+                            value="Cancel">
+
+                    </form>
+
                 </form>
             </div>
         </div>
 
     </div>
+    <script>
+        function confirmDelete() {
+            let r = confirm("Sei sicuro di cancellare?");
+            if (r) {
+                document.getElementById("form").submit();
+            }
+        }
+    </script>
 @endsection

@@ -26,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        return view("comic.create");
+        return view("comics.create");
     }
 
     /**
@@ -94,7 +94,7 @@ class ComicController extends Controller
         $comic->series = $data['series'];
         $comic->sale_date = $data['sale_date'];
         $comic->type = $data['type'];
-        $comic->save();
+        $comic->update();
 
         return redirect()->route('comics.show', $comic->id);
     }
@@ -105,8 +105,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+
+        // return view("comics.index");
+        return redirect()->route("comics.index");
     }
 }
