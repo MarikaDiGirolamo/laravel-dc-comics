@@ -9,6 +9,7 @@
             </div>
         </div>
         <h1>{{ $comic->title }}</h1>
+
         <div class="row g-4">
             <div class="col">
                 <a href="{{ route('home') }}">Torna alla lista prodotti</a>

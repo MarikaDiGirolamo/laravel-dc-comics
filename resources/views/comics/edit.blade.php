@@ -28,7 +28,11 @@
                     <input class="form-control" type="text" name="sale date" value="{{ $comic->sale_date }}">
 
                     <label for="name">type</label>
-                    <input class="form-control" type="text" name="type" value="{{ $comic->type }}">
+                    <select name="type" id="">
+                        @foreach ($TypeComics as $TypeComic)
+                            <option @selected($comic->type == $TypeComic->type)>{{ $TypeComic->type }}</option>
+                        @endforeach
+                    </select>
 
 
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
@@ -48,7 +52,7 @@
     </div>
     <script>
         function confirmDelete() {
-            let r = confirm("Sei sicuro di cancellare?");
+            let r = confirm("Are you sure you want to discard this item??");
             if (r) {
                 document.getElementById("form").submit();
             }
