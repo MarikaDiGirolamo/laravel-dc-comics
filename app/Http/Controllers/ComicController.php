@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -37,7 +38,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+
+        // $request->validate([
+        //     "title" => "required|min:5|max:50",
+        //     "description" => "required|min:5|max:65535",
+        //     "thumb" => "required|max:20",
+        //     "price" => "required|max:20",
+        //     "series" => "required|max:20",
+        //     "sale_date" => "required|date_format: Y-m-d",
+        //     "type" => "required|min:5|max:255",
+        //     "artists" => "max:50",
+        //     "writers" => "max:50",
+        // ]);
+
+        $data = $this->validateComic($request->all());
+
+        // $data = $request->all();
 
         $newComic = new Comic;
         $newComic->title = $data['title'];
@@ -86,7 +102,9 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
 
     {
-        $data = $request->all();
+        $data = $this->validateComic($request->all());
+
+        // $data = $request->all();
 
 
         $comic->title = $data['title'];
@@ -113,5 +131,28 @@ class ComicController extends Controller
 
         // return view("comics.index");
         return redirect()->route("comics.index");
+    }
+
+    private function validateComic($data)
+    {
+        $validator = validator::make($data, [
+            "title" => "required|min:5|max:50",
+            "description" => "required|min:5|max:65535",
+            "thumb" => "required|max:20",
+            "price" => "required|max:20",
+            "series" => "required|max:20",
+            "sale_date" => "required|max:255",
+            "type" => "required|min:5|max:255",
+            "artists" => "max:20",
+            "writers" => "max:20",
+        ], [
+            "title.required" => "Il titolo è obbligatorio",
+            "title.min" => "Il titolo deve essere almeno di :min caratteri",
+            "description.required" => "Inserisci una descrizione",
+            "price.required" => "Inserisci un prezzo",
+            "type.required" => "Inserisci la tipologia"
+        ])->validate();
+
+        return $validator;
     }
 }
