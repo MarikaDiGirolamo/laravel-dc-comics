@@ -11,52 +11,58 @@
         </div>
     @endif
     <div class="container my-3">
-        <h1>Create product</h1>
+        <h1>Modify Item</h1>
         <div class="row g-4 py-4">
             <div class="col">
-                <form action="{{ route('comics.update', $comic) }}" method="post">
+                <form action="{{ route('comics.update', $comic) }}" method="post" class="need-validation">
                     @csrf
                     @method('PUT')
 
-                    <label for="name">title</label>
-                    <input class="form-control" type="text" name="title" value="{{ $comic->title }}">
+                    <label for="Title">Title</label>
+                    <input class="form-control @error('title') is-invalid @enderror" type="text" name="title"
+                        value="{{ $comic->title }}">
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    <label for="name">description</label>
-                    <input class="form-control" type="text" name="description" value="{{ $comic->description }}">
+                    <label for="Description">Description</label>
+                    <input class="form-control @error('description') is-invalid @enderror" type="text" name="description"
+                        value="{{ $comic->description }}">
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
 
-                    <label for="name">thumb</label>
-                    <input class="form-control" type="text" name="thumb" value="{{ $comic->thumb }}">
+                    <label for="Thumb">Thumb</label>
+                    <input class="form-control @error('thumb') is-invalid @enderror" type="text" name="thumb"
+                        value="{{ $comic->thumb }}">
                     @error('thumb')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    <label for="name">price</label>
-                    <input class="form-control" type="text" name="price" value="{{ $comic->price }}">
+                    <label for="Price">Price</label>
+                    <input class="form-control @error('price') is-invalid @enderror" type="text" name="price"
+                        value="{{ $comic->price }}">
                     @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
 
-                    <label for="name">series</label>
-                    <input class="form-control" type="text" name="series" value="{{ $comic->series }}">
+                    <label for="Series">Series</label>
+                    <input class="form-control form-control @error('series') is-invalid @enderror" type="text"
+                        name="series" value="{{ $comic->series }}">
                     @error('series')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    <label for="name">sale date</label>
-                    <input class="form-control" type="text" name="sale date" value="{{ $comic->sale_date }}">
+                    <label for="Sale Date">Sale Date</label>
+                    <input class="form-control form-control @error('sale_date') is-invalid @enderror" type="text"
+                        name="sale date" value="{{ $comic->sale_date }}">
                     @error('sale_date')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    <label for="name">type</label>
+                    <label for="Type">Type</label>
                     <select name="type" id="">
                         @foreach ($TypeComics as $TypeComic)
                             <option @selected($comic->type == $TypeComic->type)>{{ $TypeComic->type }}</option>

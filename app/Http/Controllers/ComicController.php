@@ -55,14 +55,19 @@ class ComicController extends Controller
 
         // $data = $request->all();
 
-        $newComic = new Comic;
-        $newComic->title = $data['title'];
-        $newComic->description = $data['description'];
-        $newComic->thumb = $data['thumb'];
-        $newComic->price = $data['price'];
-        $newComic->series = $data['series'];
-        $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
+        // $data = $request->except();
+        $newComic = new Comic(); //faccio un ciclo sull'array data con la chiave e il suo valore. Per ogni ciclo new Comic ->key = valore
+        foreach ($data as $key => $value) {
+            $newComic->$key = $value;
+        }
+        // $newComic = new Comic($data);
+        // $newComic->title = $data['title'];
+        // $newComic->description = $data['description'];
+        // $newComic->thumb = $data['thumb'];
+        // $newComic->price = $data['price'];
+        // $newComic->series = $data['series'];
+        // $newComic->sale_date = $data['sale_date'];
+        // $newComic->type = $data['type'];
         $newComic->save();
 
         return redirect()->route('comics.show', $newComic->id);
@@ -86,6 +91,7 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Comic $comic)
+
     {
         $TypeComics = Comic::select('type')->distinct()->get()->all();
         // dd($TypeComics);
@@ -102,10 +108,12 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
 
     {
-        $data = $this->validateComic($request->all());
 
         // $data = $request->all();
 
+        // newComic=[$data, "id"=$comic=>"id" ];
+
+        $data = $this->validateComic($request->all());
 
         $comic->title = $data['title'];
         $comic->description = $data['description'];
@@ -138,7 +146,7 @@ class ComicController extends Controller
         $validator = validator::make($data, [
             "title" => "required|min:5|max:50",
             "description" => "required|min:5|max:65535",
-            "thumb" => "required|max:20",
+            "thumb" => "required|max:65535",
             "price" => "required|max:20",
             "series" => "required|max:20",
             "sale_date" => "required|max:255",
