@@ -47,7 +47,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-
                     <label for="Series">Series</label>
                     <input class="form-control form-control @error('series') is-invalid @enderror" type="text"
                         name="series" value="{{ $comic->series }}">
@@ -69,32 +68,29 @@
                         @endforeach
                     </select>
 
-
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
-
-
-
-
                 </form>
+
                 <form id="form" action="{{ route('comics.destroy', $comic) }}">
                     @csrf
                     @method('DELETE')
                     <input onclick="confirmDelete()" class="form-control mt-4 btn btn-danger" type="submit" value="Cancel">
                 </form>
-                <div class="row g-4">
+
+                <div class="row g-4 py-5">
                     <div class="col">
                         <a href="{{ route('home') }}">Go back to Comic List</a>
                     </div>
                 </div>
             </div>
-
         </div>
-        <script>
-            function confirmDelete() {
-                let r = confirm("Are you sure you want to discard this item??");
-                if (r) {
-                    document.getElementById("form").submit();
-                }
+    </div>
+    <script>
+        function confirmDelete() {
+            let r = confirm("Are you sure you want to discard this item??");
+            if (r) {
+                document.getElementById("form").submit();
             }
-        </script>
-    @endsection
+        }
+    </script>
+@endsection

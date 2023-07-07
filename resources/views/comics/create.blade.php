@@ -57,7 +57,7 @@
                     @enderror
 
 
-                    <label for="name">type</label>
+                    <label for="Type">Type</label>
                     <select @error('type') is-invalid @enderror name="type" id="">
                         @foreach ($TypeComics as $TypeComic)
                             <option @selected($comic->type == $TypeComic->type)>{{ $TypeComic->type }}</option>
@@ -70,7 +70,7 @@
 
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
 
-                    <div class="row g-4">
+                    <div class="row g-4 py-5">
                         <div class="col">
                             <a href="{{ route('home') }}">Go back to Comic List</a>
                         </div>
