@@ -62,6 +62,7 @@ class ComicController extends Controller
             // $newComic->$key = $value; entrambe le sintassi sono corrette. Cercano il valore della proprietà $key
             $newComic[$key] = $value;
         }
+        $newComic->fill($data);
         // $newComic = new Comic($data);
         // $newComic->title = $data['title'];
         // $newComic->description = $data['description'];
@@ -116,14 +117,15 @@ class ComicController extends Controller
         // newComic=[$data, "id"=$comic=>"id" ];
 
         $data = $this->validateComic($request->all());
+        $comic->fill($data);
 
-        $comic->title = $data['title'];
-        $comic->description = $data['description'];
-        $comic->thumb = $data['thumb'];
-        $comic->price = $data['price'];
-        $comic->series = $data['series'];
-        $comic->sale_date = $data['sale_date'];
-        $comic->type = $data['type'];
+        // $comic->title = $data['title'];
+        // $comic->description = $data['description'];
+        // $comic->thumb = $data['thumb'];
+        // $comic->price = $data['price'];
+        // $comic->series = $data['series'];
+        // $comic->sale_date = $data['sale_date'];
+        // $comic->type = $data['type'];
         $comic->update();
 
         return redirect()->route('comics.show', $comic->id);
