@@ -81,16 +81,20 @@
                     @method('DELETE')
                     <input onclick="confirmDelete()" class="form-control mt-4 btn btn-danger" type="submit" value="Cancel">
                 </form>
+                <div class="row g-4">
+                    <div class="col">
+                        <a href="{{ route('home') }}">Go back to Comic List</a>
+                    </div>
+                </div>
             </div>
-        </div>
 
-    </div>
-    <script>
-        function confirmDelete() {
-            let r = confirm("Are you sure you want to discard this item??");
-            if (r) {
-                document.getElementById("form").submit();
+        </div>
+        <script>
+            function confirmDelete() {
+                let r = confirm("Are you sure you want to discard this item??");
+                if (r) {
+                    document.getElementById("form").submit();
+                }
             }
-        }
-    </script>
-@endsection
+        </script>
+    @endsection
