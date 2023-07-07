@@ -57,7 +57,7 @@
                     @enderror
 
 
-                    {{-- <label for="name">type</label>
+                    <label for="name">type</label>
                     <select @error('type') is-invalid @enderror name="type" id="">
                         @foreach ($TypeComics as $TypeComic)
                             <option @selected($comic->type == $TypeComic->type)>{{ $TypeComic->type }}</option>
@@ -65,7 +65,7 @@
                     </select>
                     @error('type')
                         <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror --}}
+                    @enderror
 
 
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
