@@ -13,7 +13,7 @@ class ComicRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,25 @@ class ComicRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required|min:5|max:50",
+            "description" => "required|min:5|max:65535",
+            "thumb" => "required|max:65535",
+            "price" => "required|max:20",
+            "series" => "required|max:20",
+            "sale_date" => "required|max:255",
+            "type" => "required|min:5|max:255",
+            "artists" => "max:20",
+            "writers" => "max:20",
+        ];
+    }
+    public function messages()
+    {
+        return [
+            "title.required" => "Il titolo è obbligatorio",
+            "title.min" => "Il titolo deve essere almeno di :min caratteri",
+            "description.required" => "Inserisci una descrizione",
+            "price.required" => "Inserisci un prezzo",
+            "type.required" => "Inserisci la tipologia"
         ];
     }
 }
