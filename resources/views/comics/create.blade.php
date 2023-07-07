@@ -69,6 +69,11 @@
 
 
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
+
+                    <div class="row g-4">
+                        <div class="col">
+                            <a href="{{ route('home') }}">Go back to Comic List</a>
+                        </div>
                 </form>
             </div>
         </div>

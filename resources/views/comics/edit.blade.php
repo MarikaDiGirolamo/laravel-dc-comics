@@ -73,6 +73,8 @@
                     <input class="form-control mt-4 btn btn-primary" type="submit" value="Invia">
 
 
+
+
                 </form>
                 <form id="form" action="{{ route('comics.destroy', $comic) }}">
                     @csrf

@@ -58,7 +58,8 @@ class ComicController extends Controller
         // $data = $request->except();
         $newComic = new Comic(); //faccio un ciclo sull'array data con la chiave e il suo valore. Per ogni ciclo new Comic ->key = valore
         foreach ($data as $key => $value) {
-            $newComic->$key = $value;
+            // $newComic->$key = $value; entrambe le sintassi sono corrette. Cercano il valore della proprietà $key
+            $newComic[$key] = $value;
         }
         // $newComic = new Comic($data);
         // $newComic->title = $data['title'];
